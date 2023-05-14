@@ -1,0 +1,47 @@
+<html>
+
+    <head>
+        <title>Modificar Producto</title>
+    </head>
+
+    <body>
+
+        <form method="post">
+
+            {% csrf_token %}  <!---para que alguien no entre de otro lado algo asi xd-->
+
+            Nombre: <input type="text" name="nombre">
+            <br><br>
+            Precio: <input type="number" name="precio">
+            <br><br>
+
+            Marca:
+            <select name="marca">
+                {% for marca in listado_marcas %}
+                    {% if producto.marca.id == marca.id%}
+    
+                        <option value="{{ marca.id }}" SELECTED>
+                            {{marca.nombre}}
+                        </option>
+                    {% else %}
+                        <option value="{{ marca.id }}">
+                            {{marca.nombre}}
+                        </option>             
+                    {% endif %}
+                {% endfor %}
+
+
+            </select>
+
+            <br><br>
+
+            <input type="submit" value="Actualizar">
+            <br><br>
+            <a href="{% url 'listado_productos' %}">
+                Ir a la lista
+            </a>
+        </form>
+
+    </body>
+
+</html>

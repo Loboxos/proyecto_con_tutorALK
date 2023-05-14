@@ -1,0 +1,22 @@
+<html>
+
+    <head>
+        <title>Ejemplo de Template</title>
+    </head>
+
+    <body>
+
+        HOLA, ESTOY EN EL BODY
+        <br><br>
+
+        {{ nombre }}, {{ apellido }}, {{ edad }}
+
+        <br><br>
+
+        {% for marca in listado_marcas %}
+             {{ marca.nombre }}<br>
+        {% endfor %}
+
+    </body>
+
+</html>

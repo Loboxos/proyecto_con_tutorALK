@@ -1,0 +1,43 @@
+<html>
+
+    <head>
+        <title>Nuevo Producto</title>
+    </head>
+
+    <body>
+
+        <form method="post">
+
+            {% csrf_token %}
+
+            Nombre: <input type="text" name="nombre">
+            <br><br>
+            Precio: <input type="number" name="precio">
+            <br><br>
+
+            Marca:
+            <select name="marca">
+
+                {% for marca in listado_marcas %}
+
+                    <option value="{{ marca.id }}">
+                        {{ marca.nombre }}
+                    </option>
+
+                {% endfor %}
+
+            </select>
+
+            <br><br>
+                  
+            <input type="submit" value="Guardar registro">
+          
+        <br><br>
+        <a href="{% url 'listado_productos' %}">
+            Ir a la lista
+        </a>
+        </form>
+
+    </body>
+
+</html>

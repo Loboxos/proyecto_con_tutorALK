@@ -1,0 +1,65 @@
+{% load static %}
+<html>
+
+    <head>
+        <title>Listado de Productos</title>
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    </head>
+     
+    <body>
+        <div class="container">
+        
+        
+            <a href="{% url 'nuevo_producto' %}">
+                Agregar Producto
+            </a>
+            <br><br>
+            
+            <table class="table table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Marca</th>
+                    <th>acciones</th>
+                </tr>
+
+                {% for producto in listado_productos %}
+
+                    <tr>
+
+                        <td>{{ producto.id }}</td>
+                        <td>{{ producto.nombre }}</td>
+                        <td>{{ producto.precio }}</td>
+                        <td>{{ producto.marca }}</td> 
+                        <td>
+                            <a href = "{% url 'modificar_producto' producto.id %">
+                                Modificar
+                            </a>
+                            |
+                            <a href = "{% url 'elminar_producto' producto.id %">
+                                Eliminar
+                            </a>
+                            |
+                            {% if producto.activo %}
+                                <a href = "{% url 'desactivar_producto' producto.id %">
+                                    Desactivar
+                                </a>
+                            {% else %}
+                                <a href = "{% url 'activar_producto' producto.id %">
+                                    Activar
+                                </a>
+                            {% endif %}
+                        
+                           |
+
+                        </td>
+                    </tr>
+
+                {% endfor %}
+
+            </table>
+        </div>
+    </body>
+
+</html>
